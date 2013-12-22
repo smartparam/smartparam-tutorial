@@ -1,0 +1,15 @@
+{
+    name: "discount.targeted",
+    inputLevels: 2,
+    levels: [
+        {name: "date", type: "date", matcher: "between/ie", levelCreator: "currentDate"},
+        {name: "login", type: "userLogin", levelCreator: "user.login"},
+        {name: "value", type: "discount"}
+    ]
+}
+date;login;value
+*:2013-12-17;przemek;20
+*:2013-12-17;adam;5
+2013-12-17:2013-12-24;przemek;50
+2013-12-17:2013-12-24;adam;10
+*;*;0

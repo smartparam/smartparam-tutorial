@@ -1,0 +1,14 @@
+{
+    name: "discount.loyalty",
+    inputLevels: 2,
+    levels: [
+        {name: "registrationDate", type: "date", matcher: "between/ie", levelCreator: "user.registrationDate"},
+        {name: "accountType", type: "string", levelCreator: "user.accountType"},
+        {name: "value", type: "discount"}
+    ]
+}
+registrationDate;accountType;value
+*:2013-12-01;PREMIUM;20
+*:2013-12-01;REGULAR;5
+2013-12-01:*;PREMIUM;5
+2013-12-01:*;REGULAR;0

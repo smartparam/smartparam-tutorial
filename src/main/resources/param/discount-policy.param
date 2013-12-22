@@ -1,0 +1,13 @@
+{
+    name: "discount.policy",
+    inputLevels: 2,
+    levels: [
+        {name: "date", type: "date", matcher: "between/ie", levelCreator: "currentDate"},
+        {name: "accountType", type: "string", levelCreator: "user.accountType"},
+        {name: "policy", type: "string"}
+    ]
+}
+date;accountType;policy
+2013-06-01:2013-06-23;*;discount.policy.sum
+*;PREMIUM;discount.policy.sum
+*;*;discount.policy.higher
