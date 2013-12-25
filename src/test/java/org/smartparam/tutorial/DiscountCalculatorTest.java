@@ -43,7 +43,6 @@ public class DiscountCalculatorTest extends AbstractTestNGSpringContextTests {
     @Autowired
     private TestDateProvider dateProvider;
 
-    @Test
     public void shouldCombineDiscountsUsingSummingPolicy() {
         // given
         dateProvider.servedDate(2013, 12, 17);
@@ -57,7 +56,6 @@ public class DiscountCalculatorTest extends AbstractTestNGSpringContextTests {
         assertThat(discount.value()).isEqualTo(70);
     }
 
-    @Test
     public void shouldCombineDiscountsUsingChooseHigherPolicy() {
         // given
         dateProvider.servedDate(2013, 12, 17);
