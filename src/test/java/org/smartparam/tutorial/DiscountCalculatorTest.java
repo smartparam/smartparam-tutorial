@@ -32,8 +32,9 @@ import static org.smartparam.engine.test.ParamEngineAssertions.assertThat;
  *
  * @author Adam Dubiel
  */
+@Test(enabled = false)
 @ContextConfiguration(classes = RootContext.class)
-public class DiscountCalculatorDemo extends AbstractTestNGSpringContextTests {
+public class DiscountCalculatorTest extends AbstractTestNGSpringContextTests {
 
     @Autowired
     private DiscountCalculator discountCalculator;
@@ -42,7 +43,7 @@ public class DiscountCalculatorDemo extends AbstractTestNGSpringContextTests {
     private TestDateProvider dateProvider;
 
     @Test
-    public void demonstrateDiscountCalculationForPrzemek() {
+    public void shouldCombineDiscountsUsingSummingPolicy() {
         // given
         dateProvider.servedDate(2013, 12, 17);
 
@@ -56,7 +57,7 @@ public class DiscountCalculatorDemo extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    public void demonstrateDiscountCalculationForAdam() {
+    public void shouldCombineDiscountsUsingChooseHigherPolicy() {
         // given
         dateProvider.servedDate(2013, 12, 17);
 
