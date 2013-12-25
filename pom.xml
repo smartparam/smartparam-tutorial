@@ -21,52 +21,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.smartparam</groupId>
-            <artifactId>smartparam-engine</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.smartparam</groupId>
-            <artifactId>smartparam-repository-fs</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.smartparam</groupId>
-            <artifactId>smartparam-repository-jdbc</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.smartparam</groupId>
-            <artifactId>smartparam-transferer</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.smartparam</groupId>
-            <artifactId>smartparam-spring</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.smartparam</groupId>
-            <artifactId>smartparam-test</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.reflections</groupId>
-            <artifactId>reflections</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.picocontainer</groupId>
-            <artifactId>picocontainer</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
         </dependency>
@@ -92,13 +46,6 @@
             <artifactId>json-path-assert</artifactId>
             <version>0.8.1</version>
             <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.smartparam</groupId>
-            <artifactId>smartparam-engine</artifactId>
-            <version>${project.version}</version>
-            <type>test-jar</type>
         </dependency>
 
         <dependency>
@@ -130,13 +77,6 @@
             <artifactId>commons-lang</artifactId>
             <scope>compile</scope>
         </dependency>
-
-        <dependency>
-            <groupId>org.polyjdbc</groupId>
-            <artifactId>polyjdbc</artifactId>
-            <type>test-jar</type>
-        </dependency>
-
 
         <dependency>
             <groupId>commons-dbcp</groupId>
@@ -173,17 +113,6 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.16</version>
-                <configuration>
-                    <trimStackTrace>false</trimStackTrace>
-                    <includes>
-                        <include>**/*Demo.java</include>
-                    </includes>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

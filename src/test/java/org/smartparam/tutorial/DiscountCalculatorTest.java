@@ -26,7 +26,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
-import static org.smartparam.engine.test.ParamEngineAssertions.assertThat;
+
+import static org.fest.assertions.api.Assertions.assertThat;
 
 /**
  *
