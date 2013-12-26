@@ -15,7 +15,9 @@
  */
 package org.smartparam.tutorial.domain.discount;
 
+import org.smartparam.engine.core.ParamEngine;
 import org.smartparam.tutorial.domain.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -25,8 +27,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class DiscountCalculator {
 
+    private final ParamEngine paramEngine;
+
+    @Autowired
+    public DiscountCalculator(ParamEngine paramEngine) {
+        this.paramEngine = paramEngine;
+    }
+
     public Discount calculateForUser(User user) {
-        throw new UnsupportedOperationException("Please implement me using SmartParam!");
+        long discountValue = paramEngine.get("discount.loyalty",
+                user.registrationDate().toDate(),
+                user.accountType().name()).getLong();
+        return new Discount(discountValue);
     }
 
 }

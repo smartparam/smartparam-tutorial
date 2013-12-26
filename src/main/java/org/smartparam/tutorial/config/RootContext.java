@@ -15,6 +15,12 @@
  */
 package org.smartparam.tutorial.config;
 
+import org.smartparam.engine.config.ParamEngineConfig;
+import org.smartparam.engine.config.ParamEngineConfigBuilder;
+import org.smartparam.engine.config.ParamEngineFactory;
+import org.smartparam.engine.core.ParamEngine;
+import org.smartparam.repository.fs.ClasspathParamRepository;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
@@ -26,5 +32,15 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan(basePackages = {"org.smartparam.tutorial"},
         excludeFilters = @ComponentScan.Filter(Configuration.class))
 public class RootContext {
+
+    @Bean
+    public ParamEngine paramEngine() {
+        ClasspathParamRepository repository = new ClasspathParamRepository("/param", ".*\\.param$");
+
+        ParamEngineConfig config = ParamEngineConfigBuilder.paramEngineConfig()
+                .withParameterRepositories(repository)
+                .build();
+        return ParamEngineFactory.paramEngine(config);
+    }
 
 }

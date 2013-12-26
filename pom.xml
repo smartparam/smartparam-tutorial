@@ -20,6 +20,25 @@
     </properties>
 
     <dependencies>
+        <!-- SmartParam -->
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.smartparam</groupId>
+            <artifactId>smartparam-engine</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.smartparam</groupId>
+            <artifactId>smartparam-repository-fs</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- other -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
