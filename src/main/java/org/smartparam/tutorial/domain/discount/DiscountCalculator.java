@@ -16,6 +16,8 @@
 package org.smartparam.tutorial.domain.discount;
 
 import org.smartparam.engine.core.ParamEngine;
+import org.smartparam.engine.core.context.LevelValues;
+import org.smartparam.tutorial.domain.DateProvider;
 import org.smartparam.tutorial.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,16 +31,30 @@ public class DiscountCalculator {
 
     private final ParamEngine paramEngine;
 
+    private final DateProvider dateProvider;
+
     @Autowired
-    public DiscountCalculator(ParamEngine paramEngine) {
+    public DiscountCalculator(ParamEngine paramEngine, DateProvider dateProvider) {
         this.paramEngine = paramEngine;
+        this.dateProvider = dateProvider;
     }
 
     public Discount calculateForUser(User user) {
-        long discountValue = paramEngine.get("discount.loyalty",
+        long loyaltyDiscountValue = paramEngine.get("discount.loyalty",
                 user.registrationDate().toDate(),
                 user.accountType().name()).getLong();
-        return new Discount(discountValue);
+        Discount loyaltyDiscount = new Discount(loyaltyDiscountValue);
+
+        long targetedDiscountValue = paramEngine.get("discount.targeted",
+                dateProvider.currentDate().toDate(),
+                user.login().value()).getLong();
+        Discount targetedDiscount = new Discount(targetedDiscountValue);
+
+        Discount combinedDiscount = (Discount) paramEngine.callEvaluatedFunction("discount.policy",
+                new LevelValues(dateProvider.currentDate().toDate(), user.accountType().name()),
+                loyaltyDiscount, targetedDiscount);
+
+        return combinedDiscount;
     }
 
 }

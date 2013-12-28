@@ -20,6 +20,9 @@ import org.smartparam.engine.config.ParamEngineConfigBuilder;
 import org.smartparam.engine.config.ParamEngineFactory;
 import org.smartparam.engine.core.ParamEngine;
 import org.smartparam.repository.fs.ClasspathParamRepository;
+import org.smartparam.spring.SpringModule;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -33,11 +36,15 @@ import org.springframework.context.annotation.Configuration;
         excludeFilters = @ComponentScan.Filter(Configuration.class))
 public class RootContext {
 
+    @Autowired
+    private ApplicationContext applicationContext;
+
     @Bean
     public ParamEngine paramEngine() {
         ClasspathParamRepository repository = new ClasspathParamRepository("/param", ".*\\.param$");
 
         ParamEngineConfig config = ParamEngineConfigBuilder.paramEngineConfig()
+                .registerModule(new SpringModule(applicationContext))
                 .withParameterRepositories(repository)
                 .build();
         return ParamEngineFactory.paramEngine(config);

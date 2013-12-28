@@ -2,9 +2,9 @@
     name: "discount.targeted",
     inputLevels: 2,
     levels: [
-        {name: "date", type: "date", matcher: "between/ie", levelCreator: "currentDate"},
-        {name: "login", type: "userLogin", levelCreator: "user.login"},
-        {name: "value", type: "discount"}
+        {name: "date", type: "date", matcher: "between/ie",},
+        {name: "login", type: "userLogin"},
+        {name: "value", type: "integer"}
     ]
 }
 date;login;value
