@@ -33,7 +33,7 @@ import org.springframework.context.annotation.Configuration;
  * @author Adam Dubiel
  */
 @Configuration
-@ComponentScan(basePackages = {"com.adamdubiel.smartparam"},
+@ComponentScan(basePackages = {"org.smartparam.tutorial"},
         excludeFilters = @ComponentScan.Filter(Configuration.class))
 public class RootContext {
 
@@ -44,7 +44,7 @@ public class RootContext {
     public ParamEngine paramEngine() {
         ParamRepository repository = new ClasspathParamRepository("/param", ".*\\.param$");
         ParamEngineConfig engineConfig = ParamEngineConfigBuilder.paramEngineConfig()
-                .withAnnotationScanEnabled("org.smartparam.spring", "com.adamdubiel.smartparam.param", "com.adamdubiel.smartparam.domain.discount")
+                .withPackagesToScan("org.smartparam.tutorial.param", "org.smartparam.tutorial.domain")
                 .registerModule(new SpringModule(applicationContext))
                 .withParameterRepositories(repository).build();
         return ParamEngineFactory.paramEngine(engineConfig);
